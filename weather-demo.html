@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1a1f35 100%);
+            color: #f1f5f9;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #8b5cf6;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            padding: 0.8rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+            color: #f1f5f9;
+            font-family: inherit;
+            min-width: 250px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .current-weather {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .current-weather.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .weather-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .location-info h2 {
+            font-size: 2rem;
+            color: #06b6d4;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-info p {
+            color: #cbd5e1;
+        }
+
+        .temp-display {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #8b5cf6;
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .weather-item {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .weather-item label {
+            color: #8b5cf6;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .weather-item p {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+        }
+
+        .forecast {
+            margin-top: 3rem;
+        }
+
+        .forecast h3 {
+            color: #8b5cf6;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .forecast-card {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .forecast-card:hover {
+            border-color: #06b6d4;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.15);
+        }
+
+        .forecast-card .day {
+            color: #06b6d4;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .forecast-card .icon {
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        .forecast-card .temp {
+            color: #f1f5f9;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌤️ Weather Application</h1>
+            <p>Real-time weather forecasts and analytics</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="cityInput" list="locationList" placeholder="Enter city or country...">
+                <datalist id="locationList">
+                    <option value="New York, United States">
+                    <option value="London, United Kingdom">
+                    <option value="Tokyo, Japan">
+                    <option value="Sydney, Australia">
+                    <option value="Paris, France">
+                    <option value="Dubai, United Arab Emirates">
+                    <option value="Manila, Philippines">
+                    <option value="Seoul, South Korea">
+                    <option value="Berlin, Germany">
+                    <option value="Toronto, Canada">
+                    <option value="São Paulo, Brazil">
+                    <option value="Buenos Aires, Argentina">
+                    <option value="Cape Town, South Africa">
+                    <option value="Moscow, Russia">
+                    <option value="Beijing, China">
+                    <option value="Mumbai, India">
+                    <option value="Bangkok, Thailand">
+                    <option value="Cairo, Egypt">
+                    <option value="Mexico City, Mexico">
+                    <option value="Madrid, Spain">
+                    <option value="Rome, Italy">
+                    <option value="Nairobi, Kenya">
+                    <option value="Lagos, Nigeria">
+                    <option value="Jakarta, Indonesia">
+                    <option value="Istanbul, Turkey">
+                    <option value="Kathmandu, Nepal">
+                    <option value="Auckland, New Zealand">
+                    <option value="Athens, Greece">
+                    <option value="Zurich, Switzerland">
+                    <option value="Helsinki, Finland">
+                    <option value="Riyadh, Saudi Arabia">
+                    <option value="Lisbon, Portugal">
+                    <option value="Warsaw, Poland">
+                    <option value="Stockholm, Sweden">
+                </datalist>
+                <button class="btn" onclick="searchWeather()">Search</button>
+            </div>
+        </div>
+
+        <!-- Current Weather -->
+        <div id="currentWeather" class="current-weather">
+            <div class="weather-header">
+                <div class="location-info">
+                    <h2 id="cityName">New York</h2>
+                    <p id="currentDate">Today</p>
+                </div>
+                <div class="temp-display" id="tempDisplay">72°C</div>
+            </div>
+
+            <div class="weather-grid">
+                <div class="weather-item">
+                    <label>Condition</label>
+                    <p id="condition">Partly Cloudy</p>
+                </div>
+                <div class="weather-item">
+                    <label>Humidity</label>
+                    <p id="humidity">65%</p>
+                </div>
+                <div class="weather-item">
+                    <label>Wind Speed</label>
+                    <p id="windSpeed">12 km/h</p>
+                </div>
+                <div class="weather-item">
+                    <label>Pressure</label>
+                    <p id="pressure">1013 mb</p>
+                </div>
+                <div class="weather-item">
+                    <label>Feels Like</label>
+                    <p id="feelsLike">70°C</p>
+                </div>
+                <div class="weather-item">
+                    <label>UV Index</label>
+                    <p id="uvIndex">6</p>
+                </div>
+            </div>
+
+            <!-- Forecast -->
+            <div class="forecast">
+                <h3>7-Day Forecast</h3>
+                <div class="forecast-grid" id="forecastGrid">
+                    <!-- Forecast cards will be generated here -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const locationData = [
+            { city: 'New York', country: 'United States' },
+            { city: 'London', country: 'United Kingdom' },
+            { city: 'Tokyo', country: 'Japan' },
+            { city: 'Sydney', country: 'Australia' },
+            { city: 'Paris', country: 'France' },
+            { city: 'Dubai', country: 'United Arab Emirates' },
+            { city: 'Manila', country: 'Philippines' },
+            { city: 'Seoul', country: 'South Korea' },
+            { city: 'Berlin', country: 'Germany' },
+            { city: 'Toronto', country: 'Canada' },
+            { city: 'São Paulo', country: 'Brazil' },
+            { city: 'Buenos Aires', country: 'Argentina' },
+            { city: 'Cape Town', country: 'South Africa' },
+            { city: 'Moscow', country: 'Russia' },
+            { city: 'Beijing', country: 'China' },
+            { city: 'Mumbai', country: 'India' },
+            { city: 'Bangkok', country: 'Thailand' },
+            { city: 'Cairo', country: 'Egypt' },
+            { city: 'Mexico City', country: 'Mexico' },
+            { city: 'Madrid', country: 'Spain' },
+            { city: 'Rome', country: 'Italy' },
+            { city: 'Nairobi', country: 'Kenya' },
+            { city: 'Lagos', country: 'Nigeria' },
+            { city: 'Jakarta', country: 'Indonesia' },
+            { city: 'Istanbul', country: 'Turkey' },
+            { city: 'Kathmandu', country: 'Nepal' },
+            { city: 'Auckland', country: 'New Zealand' },
+            { city: 'Athens', country: 'Greece' },
+            { city: 'Zurich', country: 'Switzerland' },
+            { city: 'Helsinki', country: 'Finland' },
+            { city: 'Riyadh', country: 'Saudi Arabia' }
+        ];
+
+        const conditions = ['Sunny', 'Cloudy', 'Rainy', 'Snowy', 'Partly Cloudy', 'Thunderstorms', 'Misty', 'Windy'];
+        const icons = ['☀️', '☁️', '🌧️', '❄️', '⛅', '⛈️', '🌫️', '💨'];
+
+        function normalizeText(value) {
+            return value.trim().toLowerCase();
+        }
+
+        function getLocationData(input) {
+            const normalized = normalizeText(input);
+            return locationData.find(item =>
+                normalizeText(item.city) === normalized ||
+                normalizeText(item.country) === normalized ||
+                normalizeText(`${item.city}, ${item.country}`) === normalized
+            );
+        }
+
+        function getRandomLocation() {
+            const randomIndex = Math.floor(Math.random() * locationData.length);
+            return locationData[randomIndex];
+        }
+
+        function generateWeatherData(location) {
+            const condition = conditions[Math.floor(Math.random() * conditions.length)];
+            return {
+                ...location,
+                temp: Math.floor(Math.random() * 25 + 10),
+                condition,
+                humidity: Math.floor(Math.random() * 60 + 20),
+                wind: Math.floor(Math.random() * 20 + 5),
+                pressure: Math.floor(Math.random() * 25 + 990),
+                feels: Math.floor(Math.random() * 25 + 10),
+                uv: Math.floor(Math.random() * 11 + 1)
+            };
+        }
+
+        function searchWeather(location) {
+            if (location) {
+                document.getElementById('cityInput').value = location;
+            }
+
+            const input = document.getElementById('cityInput').value.trim();
+            if (!input) {
+                alert('Please enter a city or country name');
+                return;
+            }
+
+            const locationInfo = getLocationData(input) || getRandomLocation();
+            const data = generateWeatherData(locationInfo);
+            displayWeather(data);
+            generateForecast();
+        }
+
+        function displayWeather(data) {
+            document.getElementById('currentWeather').classList.add('active');
+            document.getElementById('cityName').textContent = `${data.city}, ${data.country}`;
+            document.getElementById('tempDisplay').textContent = data.temp + '°C';
+            document.getElementById('condition').textContent = data.condition;
+            document.getElementById('humidity').textContent = data.humidity + '%';
+            document.getElementById('windSpeed').textContent = data.wind + ' km/h';
+            document.getElementById('pressure').textContent = data.pressure + ' mb';
+            document.getElementById('feelsLike').textContent = data.feels + '°C';
+            document.getElementById('uvIndex').textContent = data.uv;
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+        }
+
+        function generateForecast() {
+            const forecastGrid = document.getElementById('forecastGrid');
+            forecastGrid.innerHTML = '';
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+            for (let i = 0; i < 7; i++) {
+                const condition = conditions[Math.floor(Math.random() * conditions.length)];
+                const icon = icons[conditions.indexOf(condition)];
+                const temp = Math.floor(Math.random() * 15 + 15);
+                const card = document.createElement('div');
+                card.className = 'forecast-card';
+                card.innerHTML = `
+                    <div class="day">${days[i]}</div>
+                    <div class="icon">${icon}</div>
+                    <div class="temp">${temp}°C</div>
+                    <small style="color: #cbd5e1;">${condition}</small>
+                `;
+                forecastGrid.appendChild(card);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            searchWeather('New York, United States');
+        });
+    </script>
+</body>
+</html>

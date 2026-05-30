@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyrus Montalla - UI/UX Designer & Developer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ZM</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-subtitle">Hello, I'm</p>
+                <h1><span>Zyrus Montalla</span></h1>
+                <p class="hero-subtitle" style="margin-top: -1rem; margin-bottom: 1rem;">UI/UX Designer & Frontend & Backend Developer</p>
+                <p class="hero-description">I design and build beautiful, modern and responsive websites with great user experience. Specialized in creating digital experiences that are functional and user-friendly.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-image">👨‍💻</div>
+                    <div class="profile-name">Zyrus Montalla</div>
+                    <div class="profile-title">Designer & Developer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Get to know me better</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Who I Am</h3>
+                <p>I'm a passionate UI/UX Designer and Frontend & Backend Developer with a keen eye for detail and a love for creating beautiful digital experiences. With expertise in design principles, modern development frameworks, and user-centered design, I bring ideas to life through elegant and functional solutions.</p>
+                <p>My approach combines strategic thinking with creative execution, ensuring that every project not only looks great but also serves its purpose effectively. I believe in continuous learning and staying updated with the latest design trends and technologies.</p>
+                <h3 style="margin-top: 2rem;">My Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>UI/UX Design</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Frontend Dev</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Backend Dev</span>
+                            <span class="skill-percentage">92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Database</span>
+                            <span class="skill-percentage">88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="info-boxes">
+                    <div class="info-box scroll-animation">
+                        <div class="info-box-number">1+</div>
+                        <div class="info-box-title">Years of Experience</div>
+                        <div class="info-box-desc">In design and development</div>
+                    </div>
+                    <div class="info-box scroll-animation">
+                        <div class="info-box-number">20+</div>
+                        <div class="info-box-title">Projects Completed</div>
+                        <div class="info-box-desc">Successfully delivered</div>
+                    </div>
+                    <div class="info-box scroll-animation">
+                        <div class="info-box-number">4</div>
+                        <div class="info-box-title">Languages</div>
+                        <div class="info-box-desc">Proficient in multiple programming languages</div>
+                    </div>
+                </div>
+
+                <div class="info-boxes" style="margin-top: 2rem;">
+                    <div class="info-box scroll-animation">
+                        <div class="info-box-title">Experience</div>
+                        <div class="info-box-desc">1+ years in UI/UX Design and Development</div>
+                    </div>
+                    <div class="info-box scroll-animation">
+                        <div class="info-box-title">Goal</div>
+                        <div class="info-box-desc">Creating innovative and impactful digital solutions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">My Recent Work</h2>
+        <p class="section-subtitle">Some of my latest projects</p>
+        
+        <div class="projects-grid">
+            <div class="project-card scroll-animation">
+                <div class="project-image">🏥</div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Medical Management System</h3>
+                        <p class="project-description">A comprehensive healthcare platform for managing patient records, appointments, and medical history with secure data handling.</p>
+                        <div class="project-tags">
+                            <span class="tag">Healthcare</span>
+                            <span class="tag">Java</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="openProjectModal('medical')">View Project</button>
+                        <button class="project-link" onclick="openProjectDemo('medical')">Live Demo</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-animation">
+                <div class="project-image">👤</div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Profile Management System</h3>
+                        <p class="project-description">User profile management system with authentication, profile customization, and account settings for seamless user experience.</p>
+                        <div class="project-tags">
+                            <span class="tag">User Management</span>
+                            <span class="tag">Java</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="openProjectModal('profile')">View Project</button>
+                        <button class="project-link" onclick="openProjectDemo('profile')">Live Demo</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-animation">
+                <div class="project-image">🌤️</div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Weather Application</h3>
+                        <p class="project-description">Real-time weather tracking application with location-based forecasts, interactive maps, and detailed weather analytics.</p>
+                        <div class="project-tags">
+                            <span class="tag">Weather App</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="openProjectModal('weather')">View Project</button>
+                        <button class="project-link" onclick="openProjectDemo('weather')">Live Demo</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-animation">
+                <div class="project-image">💣</div>
+                <div class="project-content">
+                    <div>
+                        <h3 class="project-title">Minesweeper Game</h3>
+                        <p class="project-description">Classic minesweeper game with modern UI, multiple difficulty levels, and engaging gameplay mechanics with scoring system.</p>
+                        <div class="project-tags">
+                            <span class="tag">Game</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <button class="project-link" onclick="openProjectModal('minesweeper')">View Project</button>
+                        <button class="project-link" onclick="openProjectDemo('minesweeper')">Play Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Process -->
+    <section class="design-process" id="skills">
+        <h2 class="section-title">My Design Process</h2>
+        <p class="section-subtitle">How I approach every project</p>
+        
+        <div class="process-steps">
+            <div class="process-step scroll-animation">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Research</h3>
+                <p class="step-description">Understanding user needs, market trends, and project requirements through deep analysis</p>
+            </div>
+            <div class="process-step scroll-animation">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Wireframe</h3>
+                <p class="step-description">Creating low-fidelity layouts to establish information architecture and user flow</p>
+            </div>
+            <div class="process-step scroll-animation">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Prototype</h3>
+                <p class="step-description">Building interactive prototypes to test concepts and validate design decisions</p>
+            </div>
+            <div class="process-step scroll-animation">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Final Design</h3>
+                <p class="step-description">Polishing every detail and preparing assets for development handoff</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Have a project in mind? Let's work together</p>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>zyrustugaymontalla12@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>63+ 926 079 6056</p>
+                    </div>
+                </div>
+                <div>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Follow me on social media</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/pneumonoultramicroscopicsiilicovolcanoconiosis" class="social-link" title="Facebook">📘</a>
+                        <a href="https://www.instagram.com/pneumonoultramicroscopicsiilicovolcanoconiosis" class="social-link" title="Instagram">📷</a>
+                        <a href="https://github.com/pneumonoultramicroscopicsiilicovolcanoconiosis" class="social-link" title="GitHub">⚙️</a>
+                        <a href="mailto:zyrustugaymontalla12@gmail.com" class="social-link" title="Gmail">✉️</a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Project inquiry" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Zyrus Montalla. All Rights Reserved. | Designed & Built with ❤️</p>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Project Title</h2>
+            <p class="modal-description" id="modalDescription">Project description goes here</p>
+            
+            <div class="modal-details">
+                <div class="modal-detail-item">
+                    <h4>Status</h4>
+                    <p id="modalStatus">Completed</p>
+                </div>
+                <div class="modal-detail-item">
+                    <h4>Year</h4>
+                    <p id="modalYear">2024</p>
+                </div>
+                <div class="modal-detail-item">
+                    <h4>Team Size</h4>
+                    <p id="modalTeam">Solo</p>
+                </div>
+                <div class="modal-detail-item">
+                    <h4>Category</h4>
+                    <p id="modalCategory">Web</p>
+                </div>
+            </div>
+
+            <div class="modal-tags" id="modalTags">
+                <span class="modal-tag">Feature</span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-action-btn modal-action-btn-primary" id="modalDemoBtn" onclick="openProjectDemo(currentProject)">View Demo</button>
+                <button class="modal-action-btn modal-action-btn-secondary" onclick="closeProjectModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
